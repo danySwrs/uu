@@ -385,7 +385,15 @@ done
 u , res = https.request('https://api.telegram.org/bot'..redis:get(bot_id.."Token:Bot"..msg.chat_id..":"..msg.sender.user_id)..'/getMe')
 JsonSInfo = JSON.decode(u)
 useyu = string.upper(JsonSInfo['result']['username']:gsub('@',''))
-file:close()  
+file = io.open("./Files/Run", "w")  
+file:write([[
+cd $(cd $(dirname $0); pwd)
+while(true) do
+screen -S ]]..useyu..[[ -X kill
+screen -S ]]..useyu..[[ ./start
+done
+]])  
+file:close()
 file = io.open("./Files/Run", "w")  
 file:write([[
 cd $(cd $(dirname $0); pwd)
