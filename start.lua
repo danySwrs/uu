@@ -393,15 +393,6 @@ screen -S ]]..useyu..[[ -X kill
 screen -S ]]..useyu..[[ ./start
 done
 ]])  
-file:close()
-file = io.open("./Files/Run", "w")  
-file:write([[
-cd $(cd $(dirname $0); pwd)
-while(true) do
-screen -S ]]..useyu..[[ -X kill
-screen -S ]]..useyu..[[ ./start
-done
-]])  
 file:close() 
 os.execute('cp -a ./Files/. ../'..useyu..' && cd && cd '..useyu..' && screen -d -m -S '..useyu..' lua5.3 start.lua')
 redis:del(bot_id.."Token:Bot"..msg.chat_id..":"..msg.sender.user_id) 
